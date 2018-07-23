@@ -1,5 +1,5 @@
 <?php
-namespace Blackbits\LaravelSeoRewrite\Events;
+namespace BlackBits\LaravelSeoRewrite\Events;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;

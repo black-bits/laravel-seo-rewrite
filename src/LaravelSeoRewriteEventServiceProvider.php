@@ -1,20 +1,25 @@
 <?php
 namespace BlackBits\LaravelSeoRewrite;
 
-use Illuminate\Support\Facades\Event;
+use BlackBits\LaravelSeoRewrite\Events\CreateSeoRewriteEvent;
+use BlackBits\LaravelSeoRewrite\Events\DeleteSeoRewriteEvent;
+use BlackBits\LaravelSeoRewrite\Events\SavingSeoRewriteEvent;
+use BlackBits\LaravelSeoRewrite\Listeners\CheckForLoopSeoRewriteListener;
+use BlackBits\LaravelSeoRewrite\Listeners\CreateSeoRewriteListener;
+use BlackBits\LaravelSeoRewrite\Listeners\DeleteSeoRewriteListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class LaravelSeoRewriteEventServiceProvider extends ServiceProvider
 {
     protected $listen = [
-        'BlackBits\LaravelSeoRewrite\Events\CreateSeoRewriteEvent' => [
-            'BlackBits\LaravelSeoRewrite\Listeners\CreateSeoRewriteListener',
+        DeleteSeoRewriteEvent::class => [
+            DeleteSeoRewriteListener::class,
         ],
-        'BlackBits\LaravelSeoRewrite\Events\DeleteSeoRewriteEvent' => [
-            'BlackBits\LaravelSeoRewrite\Listeners\DeleteSeoRewriteListener',
+        CreateSeoRewriteEvent::class => [
+            CreateSeoRewriteListener::class
         ],
-        'BlackBits\LaravelSeoRewrite\Events\SavingSeoRewriteEvent' => [
-            'BlackBits\LaravelSeoRewrite\Listeners\CheckForLoopSeoRewriteListener',
+        SavingSeoRewriteEvent::class => [
+            CheckForLoopSeoRewriteListener::class,
         ],
     ];
 

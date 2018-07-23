@@ -1,5 +1,5 @@
 <?php
-namespace App\Listeners;
+namespace BlackBits\LaravelSeoRewrite\Listeners;
 
 use BlackBits\LaravelSeoRewrite\Events\DeleteSeoRewriteEvent;
 use BlackBits\LaravelSeoRewrite\Models\SeoRewrite;

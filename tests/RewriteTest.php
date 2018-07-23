@@ -1,28 +1,26 @@
 <?php
 
-namespace Tests\Feature;
+namespace BlackBits\LaravelSeoRewrite\Tests;
 
 use BlackBits\LaravelSeoRewrite\Events\CreateSeoRewriteEvent;
 use BlackBits\LaravelSeoRewrite\Events\DeleteSeoRewriteEvent;
-use BlackBits\LaravelSeoRewrite\SeoRewrite;
+use BlackBits\LaravelSeoRewrite\Models\SeoRewrite;
 use Illuminate\Database\QueryException;
-use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RewriteTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_if_we_can_access_the_welcome_page()
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200)->assertSee(config('app.name'));
+        $response->assertStatus(200)->assertSee('Homepage');
     }
 
     public function test_if_a_valid_source_redirects_to_the_correct_destination_with_the_correct_code()
     {
-        $seoRewrite = factory(\App\SeoRewrite::class)->create();
+        $seoRewrite = factory(SeoRewrite::class)->create();
 
         $response = $this->get($seoRewrite->source);
         $response->assertRedirect($seoRewrite->destination)->assertStatus($seoRewrite->type);
@@ -30,7 +28,7 @@ class RewriteTest extends TestCase
 
     public function test_if_we_can_access_a_standard_web_route_even_though_we_have_other_rewrites_setup()
     {
-        factory(\App\SeoRewrite::class, 10)->create();
+        factory(SeoRewrite::class, 10)->create();
 
         $response = $this->get(route('hello.world'));
         $response->assertSee('OK')->assertStatus(200);
@@ -196,5 +194,12 @@ class RewriteTest extends TestCase
         $this->assertTrue($catched);
 
         $this->assertDatabaseMissing('seo_rewrites', ['source' => $seoRewrite3->source, 'destination' => $seoRewrite3->destination, 'type' => $seoRewrite3->type]);
+    }
+
+    public function tearDown()
+    {
+        parent::tearDown();
+
+        $this->purgeDatabase($this->getTempDirectory());
     }
 }
