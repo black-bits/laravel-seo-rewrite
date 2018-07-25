@@ -199,7 +199,5 @@ class RewriteTest extends TestCase
     public function tearDown()
     {
         parent::tearDown();
-
-//        $this->purgeDatabase($this->getTempDirectory());
     }
 }

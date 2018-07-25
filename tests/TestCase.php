@@ -28,8 +28,6 @@ abstract class TestCase extends Orchestra
 
     protected function getEnvironmentSetUp($app)
     {
-//        $this->initializeDirectory($this->getTempDirectory());
-
         $app['config']->set('database.default', 'seoRewrites');
         $app['config']->set('database.connections.seoRewrites', [
             'driver' => 'sqlite',
@@ -38,19 +36,8 @@ abstract class TestCase extends Orchestra
         ]);
     }
 
-    /*protected function initializeDirectory(string $directory)
-    {
-        if (File::isDirectory($directory)) {
-            File::deleteDirectory($directory);
-        }
-
-        File::makeDirectory($directory);
-    }*/
-
     public function setUpDatabase()
     {
-//        file_put_contents($this->getTempDirectory().'/database.sqlite', null);
-
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 
@@ -64,14 +51,4 @@ abstract class TestCase extends Orchestra
             return response()->json('OK', 200);
         })->name('hello.world');
     }
-
-    /*protected function getTempDirectory()
-    {
-        return __DIR__.'/temp';
-    }*/
-
-    /*protected function purgeDatabase($directory)
-    {
-        File::deleteDirectory($directory);
-    }*/
 }

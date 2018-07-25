@@ -11,4 +11,14 @@ class SeoRewrite extends Model
     protected $dispatchesEvents = [
         'saving' => SavingSeoRewriteEvent::class,
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::saving(function($model) {
+            $model->source = "/" . ltrim($model->source, '/');
+        });
+
+    }
 }

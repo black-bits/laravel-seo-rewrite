@@ -59,7 +59,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "BlackBits\\LaravelSeoRewrite\\LaravelSeoRewriteProvider"
+        "BlackBits\\LaravelSeoRewrite\\LaravelSeoRewriteServiceProvider"
       ]
     }
   }

@@ -5,7 +5,6 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use phpDocumentor\Reflection\Types\Integer;
 
 class CreateSeoRewriteEvent
 {
@@ -22,7 +21,7 @@ class CreateSeoRewriteEvent
     public $destination;
 
     /**
-     * @var int|Integer
+     * @var int
      */
     public $type;
 
@@ -32,7 +31,7 @@ class CreateSeoRewriteEvent
      *
      * @param String $source
      * @param String $destination
-     * @param Integer $type
+     * @param int $type
      */
     public function __construct(string $source, string $destination, int $type = null)
     {

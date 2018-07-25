@@ -15,10 +15,11 @@ class LaravelSeoRewrites
      */
     public function handle($request, Closure $next)
     {
-        $seoRewrite = SeoRewrite::whereSource('/' . $request->path())->first();
+        $seoRewrite = SeoRewrite::whereSource("/" . ltrim($request->path(), '/'))->first();
 
-        if ($seoRewrite)
+        if ($seoRewrite) {
             return response()->redirectTo($seoRewrite->destination, $seoRewrite->type);
+        }
 
         return $next($request);
     }

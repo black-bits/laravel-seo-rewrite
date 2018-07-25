@@ -22,20 +22,31 @@ Next you need to run our migrations.
 php artisan migrate
 ```
 
-When you install the package our LaravelSeoRewrites Middleware is automatically pushed to the MiddlewareGroup and activated. 
+When you install the package our LaravelSeoRewrites Middleware is automatically pushed to the global MiddlewareGroup and activated. 
 
 ## Usage
 
-When you save a model, eg a Post model and their slug has changed, you want to redirect from the old slug to the new slug. 
-So you could use an Observer class to listen for an update event and check if the old value differs from the one like so:
+To create a new redirect, simply create a new SeoRewrite entry.
+ - The source value must be a relative path matching one of your routes.
+ - The destination can be any relative or absolute URL.
+ - The type must be a valid redirect type (permanent, temporary, etc.)
 
 ```php
-if ($post->slug !== $post->getOriginal('slug')) {
-    CreateSeoRewriteEvent::dispatch($post->getOriginal('slug'), $post->slug);
-}
+SeoRewrite::create([
+    'source'      => '/old-route',
+    'destination' => '/new-route',
+    'type'        => 301
+]);
+
+SeoRewrite::create([
+    'source'      => '/old-route',
+    'destination' => 'https://your-new.domain/old-route',
+    'type'        => 308
+]);
 ```
 
-You now have created a redirect from the old slug to the new slug!
+We run a basic redirect loop detection on model save, but not all cases can be detected.
+Please be aware that you can potentially create loops.
 
 ### Changelog
 
