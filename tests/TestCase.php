@@ -1,7 +1,7 @@
 <?php
+
 namespace BlackBits\LaravelSeoRewrite\Tests;
 
-use File;
 use BlackBits\LaravelSeoRewrite\LaravelSeoRewriteServiceProvider;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +22,7 @@ abstract class TestCase extends Orchestra
     {
         return [
             RouteServiceProvider::class,
-            LaravelSeoRewriteServiceProvider::class
+            LaravelSeoRewriteServiceProvider::class,
         ];
     }
 
@@ -30,21 +30,21 @@ abstract class TestCase extends Orchestra
     {
         $app['config']->set('database.default', 'seoRewrites');
         $app['config']->set('database.connections.seoRewrites', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => ''
+            'prefix'   => '',
         ]);
     }
 
     public function setUpDatabase()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 
     protected function setUpRoutes()
     {
         Route::get('/', function () {
-            return "Homepage";
+            return 'Homepage';
         });
 
         Route::get('/hello/world', function () {

@@ -1,4 +1,5 @@
 <?php
+
 namespace BlackBits\LaravelSeoRewrite\Models;
 
 use BlackBits\LaravelSeoRewrite\Events\SavingSeoRewriteEvent;
@@ -16,9 +17,8 @@ class SeoRewrite extends Model
     {
         parent::boot();
 
-        self::saving(function($model) {
-            $model->source = "/" . ltrim($model->source, '/');
+        self::saving(function ($model) {
+            $model->source = '/'.ltrim($model->source, '/');
         });
-
     }
 }

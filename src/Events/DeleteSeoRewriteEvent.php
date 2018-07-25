@@ -1,24 +1,25 @@
 <?php
+
 namespace BlackBits\LaravelSeoRewrite\Events;
 
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Queue\SerializesModels;
 
 class DeleteSeoRewriteEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * @var String
+     * @var string
      */
     public $source;
 
     /**
      * Create a new event instance.
      *
-     * @param String|null $source
+     * @param string|null $source
      */
     public function __construct(String $source)
     {

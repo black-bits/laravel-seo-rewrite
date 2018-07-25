@@ -1,4 +1,5 @@
 <?php
+
 namespace BlackBits\LaravelSeoRewrite;
 
 use BlackBits\LaravelSeoRewrite\Events\CreateSeoRewriteEvent;
@@ -16,7 +17,7 @@ class LaravelSeoRewriteEventServiceProvider extends ServiceProvider
             DeleteSeoRewriteListener::class,
         ],
         CreateSeoRewriteEvent::class => [
-            CreateSeoRewriteListener::class
+            CreateSeoRewriteListener::class,
         ],
         SavingSeoRewriteEvent::class => [
             CheckForLoopSeoRewriteListener::class,

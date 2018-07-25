@@ -1,11 +1,11 @@
 <?php
+
 namespace BlackBits\LaravelSeoRewrite;
 
 use BlackBits\LaravelSeoRewrite\Middleware\LaravelSeoRewrites;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\Application;
 
 class LaravelSeoRewriteServiceProvider extends ServiceProvider
 {

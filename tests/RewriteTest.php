@@ -6,8 +6,6 @@ use BlackBits\LaravelSeoRewrite\Events\CreateSeoRewriteEvent;
 use BlackBits\LaravelSeoRewrite\Events\DeleteSeoRewriteEvent;
 use BlackBits\LaravelSeoRewrite\Models\SeoRewrite;
 use Illuminate\Database\QueryException;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RewriteTest extends TestCase
 {
@@ -85,11 +83,11 @@ class RewriteTest extends TestCase
     public function test_if_a_seo_rewrite_with_the_same_source_and_differnet_destination_cannot_be_created_twice()
     {
         $seoRewrite1 = factory(SeoRewrite::class)->make([
-            'source' => '/test-me'
+            'source' => '/test-me',
         ]);
 
         $seoRewrite2 = factory(SeoRewrite::class)->make([
-            'source' => '/test-me'
+            'source' => '/test-me',
         ]);
 
         try {
@@ -106,18 +104,18 @@ class RewriteTest extends TestCase
     public function test_if_the_creation_by_event_of_a_loop_will_throw_the_specified_exception()
     {
         $seoRewrite1 = factory(SeoRewrite::class)->make([
-            'source' => '/test-a',
-            'destination' => '/test-b'
+            'source'      => '/test-a',
+            'destination' => '/test-b',
         ]);
 
         $seoRewrite2 = factory(SeoRewrite::class)->make([
-            'source' => '/test-b',
-            'destination' => '/test-c'
+            'source'      => '/test-b',
+            'destination' => '/test-c',
         ]);
 
         $seoRewrite3 = factory(SeoRewrite::class)->make([
-            'source' => '/test-c',
-            'destination' => '/test-a'
+            'source'      => '/test-c',
+            'destination' => '/test-a',
         ]);
 
         try {
@@ -137,18 +135,18 @@ class RewriteTest extends TestCase
     public function test_if_the_creation_by_model_of_a_loop_will_throw_the_specified_exception()
     {
         $seoRewrite1 = factory(SeoRewrite::class)->make([
-            'source' => '/test-a',
-            'destination' => '/test-b'
+            'source'      => '/test-a',
+            'destination' => '/test-b',
         ]);
 
         $seoRewrite2 = factory(SeoRewrite::class)->make([
-            'source' => '/test-b',
-            'destination' => '/test-c'
+            'source'      => '/test-b',
+            'destination' => '/test-c',
         ]);
 
         $seoRewrite3 = factory(SeoRewrite::class)->make([
-            'source' => '/test-c',
-            'destination' => '/test-a'
+            'source'      => '/test-c',
+            'destination' => '/test-a',
         ]);
 
         try {
@@ -168,23 +166,23 @@ class RewriteTest extends TestCase
     public function test_if_an_update_by_model_to_a_loop_will_throw_the_specified_exception()
     {
         $seoRewrite1 = factory(SeoRewrite::class)->create([
-            'source' => '/test-a',
-            'destination' => '/test-b'
+            'source'      => '/test-a',
+            'destination' => '/test-b',
         ]);
 
         $seoRewrite2 = factory(SeoRewrite::class)->create([
-            'source' => '/test-b',
-            'destination' => '/test-c'
+            'source'      => '/test-b',
+            'destination' => '/test-c',
         ]);
 
         $seoRewrite3 = factory(SeoRewrite::class)->create([
-            'source' => '/test-c',
-            'destination' => '/test-d'
+            'source'      => '/test-c',
+            'destination' => '/test-d',
         ]);
 
         try {
             $seoRewrite3->update([
-                'destination' => '/test-a'
+                'destination' => '/test-a',
             ]);
         } catch (\Exception $e) {
             $this->assertEquals('SeoRewrite Loop Detected.', $e->getMessage());

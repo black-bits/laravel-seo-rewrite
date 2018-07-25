@@ -1,10 +1,11 @@
 <?php
+
 namespace BlackBits\LaravelSeoRewrite\Events;
 
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Queue\SerializesModels;
 
 class CreateSeoRewriteEvent
 {
@@ -25,17 +26,15 @@ class CreateSeoRewriteEvent
      */
     public $type;
 
-
     /**
      * Create a new event instance.
      *
-     * @param String $source
-     * @param String $destination
-     * @param int $type
+     * @param string $source
+     * @param string $destination
+     * @param int    $type
      */
     public function __construct(string $source, string $destination, int $type = null)
     {
-
         $this->source = $source;
         $this->destination = $destination;
         $this->type = $type ?? 301;

@@ -1,4 +1,5 @@
 <?php
+
 namespace BlackBits\LaravelSeoRewrite\Listeners;
 
 use BlackBits\LaravelSeoRewrite\Events\DeleteSeoRewriteEvent;
@@ -9,7 +10,8 @@ class DeleteSeoRewriteListener
     /**
      * Handle the event.
      *
-     * @param  DeleteSeoRewriteEvent  $event
+     * @param DeleteSeoRewriteEvent $event
+     *
      * @return void
      */
     public function handle(DeleteSeoRewriteEvent $event)

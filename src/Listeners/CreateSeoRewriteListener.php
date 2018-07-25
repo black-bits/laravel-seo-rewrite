@@ -1,4 +1,5 @@
 <?php
+
 namespace BlackBits\LaravelSeoRewrite\Listeners;
 
 use BlackBits\LaravelSeoRewrite\Events\CreateSeoRewriteEvent;
@@ -9,15 +10,16 @@ class CreateSeoRewriteListener
     /**
      * Handle the event.
      *
-     * @param  CreateSeoRewriteEvent  $event
+     * @param CreateSeoRewriteEvent $event
+     *
      * @return void
      */
     public function handle(CreateSeoRewriteEvent $event)
     {
         SeoRewrite::create([
-            'source' => $event->source,
+            'source'      => $event->source,
             'destination' => $event->destination,
-            'type' => $event->type
+            'type'        => $event->type,
         ]);
     }
 }

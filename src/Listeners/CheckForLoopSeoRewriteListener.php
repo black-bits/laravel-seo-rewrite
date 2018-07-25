@@ -1,4 +1,5 @@
 <?php
+
 namespace BlackBits\LaravelSeoRewrite\Listeners;
 
 use BlackBits\LaravelSeoRewrite\Events\SavingSeoRewriteEvent;
@@ -9,7 +10,8 @@ class CheckForLoopSeoRewriteListener
     /**
      * Handle the event.
      *
-     * @param  SavingSeoRewriteEvent  $event
+     * @param SavingSeoRewriteEvent $event
+     *
      * @return void
      */
     public function handle(SavingSeoRewriteEvent $event)
@@ -28,7 +30,6 @@ class CheckForLoopSeoRewriteListener
             if ($destination == $event->seoRewrite->source) {
                 throw new \Exception('SeoRewrite Loop Detected.');
             }
-
         } while ($destination);
     }
 }
