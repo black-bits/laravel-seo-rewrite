@@ -1,0 +1,66 @@
+{
+  "name": "black-bits/laravel-seo-rewrite",
+  "description": "A clean and easy to use package to create seo rewrites using events.",
+  "keywords": [
+    "laravel",
+    "seo",
+    "rewrites",
+    "seo-rewrites",
+    "laravel-seo-rewrite",
+    "BlackBits"
+  ],
+  "homepage": "https://github.com/black-bits/laravel-seo-rewrite",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Oliver Heck",
+      "email": "oliver.heck@blackbits.io",
+      "homepage": "https://blackbits.io",
+      "role": "Developer"
+    },
+    {
+      "name": "Andreas Przywara",
+      "email": "andreas.przywara@blackbits.io",
+      "homepage": "https://blackbits.io",
+      "role": "Developer"
+    },
+    {
+      "name": "Adrian Raeuchle",
+      "email": "adrian.raeuchle@blackbits.io",
+      "homepage": "https://blackbits.io",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "laravel/framework": "~5.2|~5.3|~5.4|~5.5|~5.6"
+  },
+  "require-dev": {
+    "larapack/dd": "^1.0",
+    "orchestra/testbench": "~3.0",
+    "phpunit/phpunit": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "BlackBits\\LaravelSeoRewrite\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BlackBits\\LaravelSeoRewrite\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "BlackBits\\LaravelSeoRewrite\\LaravelSeoRewriteServiceProvider"
+      ]
+    }
+  }
+}
