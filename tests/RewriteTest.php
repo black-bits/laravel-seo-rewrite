@@ -200,6 +200,6 @@ class RewriteTest extends TestCase
     {
         parent::tearDown();
 
-        $this->purgeDatabase($this->getTempDirectory());
+//        $this->purgeDatabase($this->getTempDirectory());
     }
 }
